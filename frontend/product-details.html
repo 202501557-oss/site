@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WHITE & BLACK — Product</title><link rel="stylesheet" href="/style/style.css">
+<style>
+body{margin:0;background:#fafafa;color:#111;font-family:Arial,sans-serif}.wrap{max-width:1100px;margin:50px auto;padding:20px}.back{display:inline-block;margin-bottom:24px;color:#111;text-decoration:none;font-weight:700}.product{display:grid;grid-template-columns:1fr 1fr;gap:45px;background:#fff;border:1px solid #ddd;border-radius:20px;padding:28px}.image{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;background:#eee}.cat{color:#777;text-transform:uppercase;letter-spacing:1px}.price{font-size:30px;font-weight:800}.desc{color:#555;line-height:1.7}.btn{padding:14px 20px;border:0;border-radius:10px;background:#111;color:#fff;font-weight:700;cursor:pointer}.msg{margin-top:15px}.loading{text-align:center;padding:80px}
+@media(max-width:700px){.product{grid-template-columns:1fr}.wrap{margin:20px auto}}
+</style></head>
+<body><div class="wrap"><a class="back" href="/">← Back to store</a><div id="app" class="loading">Loading...</div></div>
+<script>
+const id=location.pathname.split('/').pop();
+function imageUrl(x){let n=String(x||'').replace(/^images[\\/]/i,'');return n?'/images/'+encodeURIComponent(n):''}
+async function load(){const box=document.getElementById('app');try{const r=await fetch('/api/products/'+id,{credentials:'include'});const d=await r.json();if(!r.ok||!d.success){box.innerHTML='<div class="loading">Product not found.</div>';return}const p=d.product;box.className='product';box.innerHTML=`<div><img class="image" src="${imageUrl(p.image)}" alt="${p.name}" onerror="this.style.display='none'"></div><div><div class="cat">${p.category}</div><h1>${p.name}</h1><div class="price">$${Number(p.price).toFixed(2)}</div><p class="desc">${p.description||'No description available.'}</p><button class="btn" onclick="add(${p.id})">ADD TO CART</button><div id="msg" class="msg"></div></div>`}catch(e){box.innerHTML='<div class="loading">Could not connect to server.</div>'}}
+async function add(id){const msg=document.getElementById('msg');try{const r=await fetch('/api/cart',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({product_id:id,quantity:1})});const d=await r.json();msg.textContent=d.message||'Done';}catch(e){msg.textContent='Could not add to cart'}}load();
+</script></body></html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WHITE & BLACK — Admin Login</title>
+<link rel="stylesheet" href="/style/style.css">
+<style>
+body{min-height:100vh;display:grid;place-items:center;background:#f4f4f4;font-family:Arial,sans-serif;color:#111}
+.card{width:min(420px,92vw);background:#fff;border:1px solid #ddd;border-radius:18px;padding:34px;box-shadow:0 18px 50px rgba(0,0,0,.12)}
+h1{margin:0 0 8px;font-size:30px}.sub{color:#666;margin-bottom:26px}
+label{display:block;font-weight:700;margin:15px 0 7px}input{width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid #ccc;border-radius:10px;font-size:15px}
+button{width:100%;margin-top:22px;padding:13px;border:0;border-radius:10px;background:#111;color:#fff;font-weight:700;cursor:pointer}.msg{min-height:22px;margin-top:14px;color:#c00;text-align:center}.back{display:block;text-align:center;margin-top:18px;color:#111;text-decoration:none}
+</style>
+</head>
+<body>
+<main class="card">
+<h1>WHITE & BLACK</h1><div class="sub">Admin Dashboard Login</div>
+<form id="login-form">
+<label for="email">Email</label><input id="email" type="email" autocomplete="username" required>
+<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required>
+<button type="submit">LOGIN</button>
+<div id="msg" class="msg"></div>
+</form>
+<a class="back" href="/auth">Back to store</a>
+</main>
+<script>
+document.getElementById('login-form').addEventListener('submit', async e=>{
+ e.preventDefault(); const msg=document.getElementById('msg'); msg.textContent='';
+ try{const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value})}); const d=await r.json(); if(!r.ok||!d.success){msg.textContent=d.message||'Login failed';return} location.href='/admin/dashboard';}
+ catch(err){msg.textContent='Server connection failed';}
+});
+</script>
+</body>
+</html>

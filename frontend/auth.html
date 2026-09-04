@@ -1,0 +1,1490 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WHITE & BLACK | Login</title>
+
+    <style>
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+           MAIN SCENE
+        ===================================================== */
+
+        .scene {
+            width: 100%;
+            height: 100vh;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 25% 50%,
+                    #171717 0%,
+                    #050505 45%,
+                    #000 100%
+                );
+        }
+
+
+        /* =====================================================
+           CLOTHES AREA
+        ===================================================== */
+
+        .clothes {
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 55%;
+            height: 100%;
+        }
+
+
+        /* =====================================================
+           BRAND BACKGROUND
+        ===================================================== */
+
+        .clothes::before {
+            content: "W&B";
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            font-size: 180px;
+
+            font-weight: 900;
+
+            letter-spacing: 15px;
+
+            color: rgba(255, 255, 255, 0.025);
+
+            pointer-events: none;
+
+            user-select: none;
+        }
+
+
+        /* =====================================================
+           ROPE
+        ===================================================== */
+
+        .rope {
+            position: absolute;
+
+            top: 25%;
+            left: 5%;
+
+            width: 80%;
+            height: 4px;
+
+            background: #eeeeee;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 0 8px rgba(255, 255, 255, .4);
+        }
+
+
+        .rope-end {
+            position: absolute;
+
+            top: 25%;
+            left: 48%;
+
+            width: 4px;
+            height: 120px;
+
+            background: #eeeeee;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 8px rgba(255, 255, 255, .3);
+        }
+
+
+        /* =====================================================
+           HANDLE
+        ===================================================== */
+
+        .handle {
+            position: absolute;
+
+            top: calc(25% + 100px);
+            left: calc(48% - 22px);
+
+            width: 48px;
+            height: 48px;
+
+            background: #ffffff;
+
+            color: #000000;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 19px;
+            font-weight: 900;
+
+            cursor: grab;
+
+            user-select: none;
+
+            z-index: 20;
+
+            box-shadow:
+                0 0 15px rgba(255,255,255,.65);
+
+            transition:
+                transform .2s ease,
+                box-shadow .3s ease;
+        }
+
+        .handle:hover {
+            transform: scale(1.08);
+
+            box-shadow:
+                0 0 25px rgba(255,255,255,.9);
+        }
+
+        .handle:active {
+            cursor: grabbing;
+
+            transform: scale(.95);
+        }
+
+
+        /* =====================================================
+           HOODIE
+        ===================================================== */
+
+        .shirt {
+            position: absolute;
+
+            top: calc(25% + 115px);
+            left: calc(48% - 105px);
+
+            width: 210px;
+            height: 250px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #191919,
+                    #080808
+                );
+
+            border-radius:
+                35px 35px 25px 25px;
+
+            opacity: 0;
+
+            transform:
+                translateY(-30px)
+                scale(.85);
+
+            transition:
+                opacity .6s ease,
+                transform .6s ease,
+                box-shadow .5s ease;
+
+            z-index: 5;
+
+            box-shadow:
+                inset 0 0 0 1px #292929,
+                0 20px 40px rgba(0,0,0,.8);
+        }
+
+
+        /* =====================================================
+           HOOD
+        ===================================================== */
+
+        .shirt::before {
+            content: "";
+
+            position: absolute;
+
+            top: -55px;
+            left: 47px;
+
+            width: 116px;
+            height: 95px;
+
+            background: #101010;
+
+            border-radius:
+                60px 60px 30px 30px;
+
+            box-shadow:
+                inset 0 0 0 1px #292929;
+        }
+
+
+        /* =====================================================
+           HOOD OPENING
+        ===================================================== */
+
+        .hood-hole {
+            position: absolute;
+
+            top: -35px;
+            left: 72px;
+
+            width: 67px;
+            height: 45px;
+
+            background: #000;
+
+            border-radius: 50%;
+
+            z-index: 2;
+        }
+
+
+        /* =====================================================
+           HOOD STRINGS
+        ===================================================== */
+
+        .hood-string-left,
+        .hood-string-right {
+            position: absolute;
+
+            top: -5px;
+
+            width: 3px;
+            height: 45px;
+
+            background: #eeeeee;
+
+            border-radius: 5px;
+
+            z-index: 5;
+        }
+
+        .hood-string-left {
+            left: 86px;
+
+            transform: rotate(4deg);
+        }
+
+        .hood-string-right {
+            left: 121px;
+
+            transform: rotate(-4deg);
+        }
+
+
+        /* =====================================================
+           SLEEVES
+        ===================================================== */
+
+        .sleeve-left,
+        .sleeve-right {
+            position: absolute;
+
+            top: 20px;
+
+            width: 65px;
+            height: 145px;
+
+            background: #101010;
+
+            border-radius: 35px;
+
+            z-index: -1;
+
+            box-shadow:
+                inset 0 0 0 1px #292929;
+        }
+
+        .sleeve-left {
+            left: -45px;
+
+            transform: rotate(18deg);
+        }
+
+        .sleeve-right {
+            right: -45px;
+
+            transform: rotate(-18deg);
+        }
+
+
+        /* =====================================================
+           LOGO ON HOODIE
+        ===================================================== */
+
+        .shirt::after {
+            content: "WHITE & BLACK";
+
+            position: absolute;
+
+            top: 105px;
+            left: 0;
+
+            width: 100%;
+
+            text-align: center;
+
+            color: #fff;
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            text-shadow:
+                0 0 8px rgba(255,255,255,.3);
+        }
+
+
+        /* =====================================================
+           HOODIE ACTIVE
+        ===================================================== */
+
+        .shirt.glow {
+            opacity: 1;
+
+            transform:
+                translateY(0)
+                scale(1);
+
+            box-shadow:
+                0 0 20px rgba(255,255,255,.35),
+                0 0 55px rgba(255,255,255,.15),
+                inset 0 0 20px rgba(255,255,255,.04);
+        }
+
+
+        /* =====================================================
+           AUTH AREA
+        ===================================================== */
+
+        .auth {
+            position: absolute;
+
+            right: 8%;
+
+            top: 50%;
+
+            width: 390px;
+
+            transform:
+                translateY(-50%)
+                translateX(100px);
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                opacity .7s ease,
+                transform .7s ease;
+        }
+
+
+        .auth.show {
+            opacity: 1;
+
+            pointer-events: auto;
+
+            transform:
+                translateY(-50%)
+                translateX(0);
+        }
+
+
+        /* =====================================================
+           AUTH CARD
+        ===================================================== */
+
+        .auth-card {
+            position: relative;
+
+            background: #ffffff;
+
+            color: #000000;
+
+            padding: 42px;
+
+            border-radius: 0;
+
+            border: 1px solid #dddddd;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.55);
+        }
+
+
+        /* Top black line */
+
+        .auth-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 5px;
+
+            background: #000;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo {
+            text-align: center;
+
+            font-size: 27px;
+
+            font-weight: 900;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================================
+           TABS
+        ===================================================== */
+
+        .tabs {
+            display: flex;
+
+            margin-bottom: 28px;
+
+            border-bottom: 1px solid #dddddd;
+        }
+
+
+        .tab {
+            width: 50%;
+
+            padding: 13px;
+
+            background: none;
+
+            border: none;
+
+            border-bottom: 3px solid transparent;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            color: #888;
+
+            transition: .3s ease;
+        }
+
+
+        .tab:hover {
+            color: #000;
+        }
+
+
+        .tab.active {
+            color: #000;
+
+            border-bottom-color: #000;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        .form-group input {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #cccccc;
+
+            border-radius: 0;
+
+            outline: none;
+
+            background: #fff;
+
+            color: #000;
+
+            font-size: 14px;
+
+            transition:
+                border-color .25s ease,
+                box-shadow .25s ease;
+        }
+
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+
+        .form-group input:focus {
+            border-color: #000;
+
+            box-shadow:
+                0 0 0 1px #000;
+        }
+
+
+        /* =====================================================
+           SIGNUP FIELD
+        ===================================================== */
+
+        .signup-only {
+            display: none;
+        }
+
+
+        .auth.signup .signup-only {
+            display: block;
+        }
+
+
+        /* =====================================================
+           SUBMIT
+        ===================================================== */
+
+        .submit {
+            width: 100%;
+
+            padding: 15px;
+
+            border: 1px solid #000;
+
+            border-radius: 0;
+
+            background: #000;
+
+            color: #fff;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            margin-top: 8px;
+
+            transition:
+                background .3s ease,
+                color .3s ease,
+                transform .2s ease;
+        }
+
+
+        .submit:hover {
+            background: #fff;
+
+            color: #000;
+
+            transform: translateY(-2px);
+        }
+
+
+        .submit:disabled {
+            opacity: .55;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        .message {
+            display: none;
+
+            text-align: center;
+
+            margin-top: 16px;
+
+            padding: 11px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .message.show {
+            display: block;
+        }
+
+
+        .message.error {
+            background: #eeeeee;
+
+            color: #000;
+        }
+
+
+        .message.success {
+            background: #000;
+
+            color: #fff;
+        }
+
+
+        /* =====================================================
+           HINT
+        ===================================================== */
+
+        .hint {
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #888;
+
+            font-size: 11px;
+
+            letter-spacing: .5px;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            body {
+                overflow-y: auto;
+            }
+
+            .scene {
+                min-height: 100vh;
+
+                height: auto;
+
+                flex-direction: column;
+
+                justify-content: flex-start;
+
+                padding: 30px 0 50px;
+            }
+
+            .clothes {
+                position: relative;
+
+                width: 100%;
+
+                height: 430px;
+
+                min-height: 430px;
+            }
+
+            .clothes::before {
+                font-size: 100px;
+            }
+
+            .auth {
+                position: relative;
+
+                right: auto;
+                top: auto;
+
+                width: 90%;
+
+                max-width: 390px;
+
+                margin-bottom: 30px;
+
+                transform:
+                    translateY(30px)
+                    translateX(0);
+            }
+
+            .auth.show {
+                transform:
+                    translateY(0)
+                    translateX(0);
+            }
+
+            .auth-card {
+                padding: 32px 25px;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 500px) {
+
+            .clothes {
+                height: 380px;
+
+                min-height: 380px;
+            }
+
+            .rope {
+                width: 75%;
+            }
+
+            .shirt {
+                transform:
+                    translateY(-30px)
+                    scale(.75);
+
+                transform-origin: top center;
+            }
+
+            .shirt.glow {
+                transform:
+                    translateY(0)
+                    scale(.75);
+            }
+
+            .handle {
+                width: 44px;
+                height: 44px;
+
+                left: calc(48% - 20px);
+            }
+
+            .auth {
+                width: calc(100% - 30px);
+            }
+
+            .logo {
+                font-size: 22px;
+
+                letter-spacing: 3px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="scene">
+
+        <!-- =================================================
+             CLOTHES
+        ================================================== -->
+
+        <div class="clothes">
+
+            <div class="rope"></div>
+
+            <div class="rope-end"></div>
+
+
+            <!-- HOODIE -->
+
+            <div
+                class="shirt"
+                id="shirt"
+            >
+
+                <div class="hood-hole"></div>
+
+                <div class="hood-string-left"></div>
+
+                <div class="hood-string-right"></div>
+
+                <div class="sleeve-left"></div>
+
+                <div class="sleeve-right"></div>
+
+            </div>
+
+
+            <!-- HANDLE -->
+
+            <div
+                class="handle"
+                id="handle"
+            >
+                ↓
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             AUTH
+        ================================================== -->
+
+        <div
+            class="auth"
+            id="auth"
+        >
+
+            <div class="auth-card">
+
+                <div class="logo">
+                    WHITE & BLACK
+                </div>
+
+
+                <!-- TABS -->
+
+                <div class="tabs">
+
+                    <button
+                        type="button"
+                        class="tab active"
+                        id="loginTab"
+                    >
+                        LOGIN
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="tab"
+                        id="signupTab"
+                    >
+                        SIGN UP
+                    </button>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form id="authForm">
+
+                    <!-- NAME -->
+
+                    <div class="form-group signup-only">
+
+                        <label for="name">
+                            Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        class="submit"
+                        id="submitButton"
+                    >
+                        LOGIN
+                    </button>
+
+
+                    <!-- MESSAGE -->
+
+                    <div
+                        class="message"
+                        id="message"
+                    ></div>
+
+                </form>
+
+
+                <div class="hint">
+                    Pull the rope to reveal the store
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
+
+        const handle =
+            document.getElementById("handle");
+
+        const shirt =
+            document.getElementById("shirt");
+
+        const auth =
+            document.getElementById("auth");
+
+        const loginTab =
+            document.getElementById("loginTab");
+
+        const signupTab =
+            document.getElementById("signupTab");
+
+        const submitButton =
+            document.getElementById("submitButton");
+
+        const authForm =
+            document.getElementById("authForm");
+
+        const message =
+            document.getElementById("message");
+
+        const nameInput =
+            document.getElementById("name");
+
+        const emailInput =
+            document.getElementById("email");
+
+        const passwordInput =
+            document.getElementById("password");
+
+
+        let dragging = false;
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        function showMessage(text, type) {
+
+            message.textContent = text;
+
+            message.className =
+                "message show " + type;
+        }
+
+
+        function clearMessage() {
+
+            message.textContent = "";
+
+            message.className =
+                "message";
+        }
+
+
+        /* =====================================================
+           DRAG START
+        ===================================================== */
+
+        const startDrag = () => {
+
+            dragging = true;
+        };
+
+
+        /* =====================================================
+           DRAG STOP
+        ===================================================== */
+
+        const stopDrag = () => {
+
+            dragging = false;
+        };
+
+
+        /* =====================================================
+           DRAG MOVE
+        ===================================================== */
+
+        const moveDrag = (e) => {
+
+            if (!dragging) return;
+
+
+            const clothes =
+                document.querySelector(".clothes");
+
+
+            const rect =
+                clothes.getBoundingClientRect();
+
+
+            let y =
+                e.clientY - rect.top;
+
+
+            const minY =
+                rect.height * 0.25 + 50;
+
+
+            const maxY =
+                rect.height * 0.25 + 180;
+
+
+            y = Math.max(
+                minY,
+                Math.min(maxY, y)
+            );
+
+
+            handle.style.top =
+                `${y}px`;
+
+
+            const progress =
+                (y - minY) /
+                (maxY - minY);
+
+
+            if (progress > 0.65) {
+
+                shirt.classList.add("glow");
+
+                auth.classList.add("show");
+
+            }
+
+        };
+
+
+        /* =====================================================
+           MOUSE EVENTS
+        ===================================================== */
+
+        handle.addEventListener(
+            "mousedown",
+            startDrag
+        );
+
+
+        document.addEventListener(
+            "mouseup",
+            stopDrag
+        );
+
+
+        document.addEventListener(
+            "mousemove",
+            moveDrag
+        );
+
+
+        /* =====================================================
+           TOUCH EVENTS
+           For mobile
+        ===================================================== */
+
+        handle.addEventListener(
+            "touchstart",
+            (e) => {
+
+                e.preventDefault();
+
+                dragging = true;
+            },
+            {
+                passive: false
+            }
+        );
+
+
+        document.addEventListener(
+            "touchend",
+            () => {
+
+                dragging = false;
+            }
+        );
+
+
+        document.addEventListener(
+            "touchmove",
+            (e) => {
+
+                if (!dragging) return;
+
+                const clothes =
+                    document.querySelector(".clothes");
+
+                const rect =
+                    clothes.getBoundingClientRect();
+
+                let y =
+                    e.touches[0].clientY -
+                    rect.top;
+
+                const minY =
+                    rect.height * 0.25 + 50;
+
+                const maxY =
+                    rect.height * 0.25 + 180;
+
+                y = Math.max(
+                    minY,
+                    Math.min(maxY, y)
+                );
+
+                handle.style.top =
+                    `${y}px`;
+
+                const progress =
+                    (y - minY) /
+                    (maxY - minY);
+
+                if (progress > 0.65) {
+
+                    shirt.classList.add("glow");
+
+                    auth.classList.add("show");
+                }
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+        /* =====================================================
+           LOGIN TAB
+        ===================================================== */
+
+        loginTab.addEventListener(
+            "click",
+            () => {
+
+                auth.classList.remove("signup");
+
+                loginTab.classList.add("active");
+
+                signupTab.classList.remove("active");
+
+                submitButton.textContent =
+                    "LOGIN";
+
+                nameInput.required = false;
+
+                clearMessage();
+            }
+        );
+
+
+        /* =====================================================
+           SIGN UP TAB
+        ===================================================== */
+
+        signupTab.addEventListener(
+            "click",
+            () => {
+
+                auth.classList.add("signup");
+
+                signupTab.classList.add("active");
+
+                loginTab.classList.remove("active");
+
+                submitButton.textContent =
+                    "SIGN UP";
+
+                nameInput.required = true;
+
+                clearMessage();
+            }
+        );
+
+
+        /* =====================================================
+           LOGIN / SIGN UP
+        ===================================================== */
+
+        authForm.addEventListener(
+            "submit",
+            async (e) => {
+
+                e.preventDefault();
+
+                clearMessage();
+
+
+                const isSignup =
+                    auth.classList.contains("signup");
+
+
+                const name =
+                    nameInput.value.trim();
+
+
+                const email =
+                    emailInput.value.trim();
+
+
+                const password =
+                    passwordInput.value;
+
+
+                /* VALIDATION */
+
+                if (isSignup && !name) {
+
+                    showMessage(
+                        "Please enter your name.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (!email || !password) {
+
+                    showMessage(
+                        "Please enter your email and password.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /* LOADING */
+
+                submitButton.disabled = true;
+
+                submitButton.textContent =
+                    isSignup
+                        ? "CREATING..."
+                        : "LOGGING IN...";
+
+
+                /* API */
+
+                const endpoint =
+                    isSignup
+                        ? "/api/auth/signup"
+                        : "/api/auth/login";
+
+
+                const data =
+                    isSignup
+                        ? {
+                            name: name,
+                            email: email,
+                            password: password
+                        }
+                        : {
+                            email: email,
+                            password: password
+                        };
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            endpoint,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                credentials: "include",
+
+                                body:
+                                    JSON.stringify(data)
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        showMessage(
+                            result.message ||
+                            "Something went wrong.",
+                            "error"
+                        );
+
+
+                        submitButton.disabled = false;
+
+                        submitButton.textContent =
+                            isSignup
+                                ? "SIGN UP"
+                                : "LOGIN";
+
+                        return;
+                    }
+
+
+                    /* SUCCESS */
+
+                    showMessage(
+                        result.message ||
+                        "Success!",
+                        "success"
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                "/";
+
+                        },
+                        700
+                    );
+
+                } catch (error) {
+
+                    console.error(error);
+
+
+                    showMessage(
+                        "Cannot connect to the server.",
+                        "error"
+                    );
+
+
+                    submitButton.disabled = false;
+
+                    submitButton.textContent =
+                        isSignup
+                            ? "SIGN UP"
+                            : "LOGIN";
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
+```

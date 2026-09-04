@@ -1,0 +1,875 @@
+```css
+/* =========================================================
+   WHITE & BLACK — Professional Clothing Store
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #111111;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    height: 76px;
+    background: #000000;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    border-bottom: 1px solid #222222;
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links a {
+    position: relative;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    transition: 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+    height: 1px;
+
+    background: #ffffff;
+
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #cccccc;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Cart */
+
+.cart {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    padding: 10px 14px;
+    border: 1px solid transparent;
+
+    transition: 0.3s ease;
+}
+
+.cart:hover {
+    border-color: #444444;
+    background: #111111;
+}
+
+#cart-count {
+    min-width: 21px;
+    height: 21px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+    color: #000000;
+
+    border-radius: 50%;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* User */
+
+#username {
+    color: #bbbbbb;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#logout-btn {
+    background: transparent;
+    color: #ffffff;
+
+    border: 1px solid #555555;
+
+    padding: 8px 14px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+#logout-btn:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    min-height: calc(100vh - 76px);
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.72),
+            rgba(0, 0, 0, 0.72)
+        ),
+        #111111;
+
+    color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before,
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    transform: rotate(45deg);
+}
+
+.hero::before {
+    top: -150px;
+    left: -100px;
+}
+
+.hero::after {
+    bottom: -150px;
+    right: -100px;
+}
+
+.hero h1 {
+    position: relative;
+    z-index: 1;
+
+    font-size: clamp(48px, 8vw, 90px);
+
+    font-weight: 900;
+
+    letter-spacing: 14px;
+
+    margin-bottom: 20px;
+
+    line-height: 1;
+}
+
+.hero p {
+    position: relative;
+    z-index: 1;
+
+    font-size: 18px;
+
+    color: #d0d0d0;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 38px;
+}
+
+.hero button {
+    position: relative;
+    z-index: 1;
+
+    background: #ffffff;
+    color: #000000;
+
+    border: 2px solid #ffffff;
+
+    padding: 15px 38px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.hero button:hover {
+    background: transparent;
+    color: #ffffff;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
+
+section {
+    scroll-margin-top: 90px;
+}
+
+#products {
+    padding: 90px 7%;
+
+    background: #ffffff;
+
+    text-align: center;
+}
+
+#products h2 {
+    font-size: 38px;
+
+    font-weight: 800;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 12px;
+}
+
+#products > p {
+    color: #777777;
+
+    font-size: 15px;
+
+    margin-bottom: 50px;
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+   ========================================================= */
+
+#products-container {
+    width: 100%;
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 28px;
+
+    text-align: left;
+}
+
+.product-card {
+    background: #ffffff;
+
+    border: 1px solid #e5e5e5;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #111111;
+
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.10);
+}
+
+.product-card img {
+    width: 100%;
+
+    height: 390px;
+
+    object-fit: cover;
+
+    display: block;
+
+    background: #f3f3f3;
+
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.03);
+}
+
+.product-card > div {
+    padding: 22px;
+}
+
+.product-card h3 {
+    font-size: 19px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+
+    letter-spacing: 0.5px;
+}
+
+.product-card p {
+    color: #777777;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.product-card .price {
+    color: #000000;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    margin-bottom: 18px;
+}
+
+.product-card button {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: #000000;
+    color: #ffffff;
+
+    border: 1px solid #000000;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.product-card button:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+#about {
+    padding: 100px 7%;
+
+    background: #f5f5f5;
+
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 38px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+}
+
+#about p {
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    color: #555555;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+#contact {
+    padding: 90px 7%;
+
+    background: #ffffff;
+
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 38px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 18px;
+}
+
+#contact p {
+    color: #666666;
+
+    font-size: 15px;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   CART MODAL
+   ========================================================= */
+
+/* IMPORTANT:
+   Cart must be hidden when the page first loads.
+   JavaScript adds the "show" class when the user clicks Cart.
+*/
+
+#cart-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    background: rgba(0, 0, 0, 0.72);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+#cart-modal.show {
+    display: flex;
+}
+
+/* Cart Box */
+
+#cart-modal > div {
+    width: 100%;
+    max-width: 550px;
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    padding: 32px;
+
+    border: 1px solid #111111;
+
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+}
+
+#cart-modal h2 {
+    font-size: 25px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #dddddd;
+
+    padding-bottom: 18px;
+}
+
+/* Cart Items */
+
+#cart-items {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.cart-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 15px;
+
+    border: 1px solid #e5e5e5;
+
+    background: #fafafa;
+}
+
+.cart-item h4 {
+    font-size: 15px;
+
+    margin-bottom: 3px;
+}
+
+.cart-item p {
+    font-size: 13px;
+
+    color: #777777;
+}
+
+/* Remove Button */
+
+.cart-item button {
+    background: transparent;
+
+    color: #000000;
+
+    border: 1px solid #cccccc;
+
+    padding: 7px 10px;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.cart-item button:hover {
+    background: #000000;
+    color: #ffffff;
+
+    border-color: #000000;
+}
+
+/* Total */
+
+#cart-total {
+    font-size: 21px;
+
+    font-weight: 800;
+
+    text-align: right;
+
+    padding: 18px 0;
+
+    border-top: 1px solid #dddddd;
+}
+
+/* Checkout */
+
+#checkout-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    background: #000000;
+    color: #ffffff;
+
+    border: 1px solid #000000;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+#checkout-btn:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #111111;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #333333;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .navbar {
+        padding: 0 4%;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+
+    #products-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-card img {
+        height: 350px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        height: auto;
+        min-height: 70px;
+
+        padding: 15px 20px;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+    .logo {
+        font-size: 17px;
+
+        letter-spacing: 3px;
+    }
+
+    .nav-links {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 16px;
+
+        padding-top: 5px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+
+        letter-spacing: 0.5px;
+    }
+
+    .cart {
+        font-size: 12px;
+
+        padding: 7px 10px;
+    }
+
+    #username {
+        display: none;
+    }
+
+    #logout-btn {
+        font-size: 10px;
+
+        padding: 7px 10px;
+    }
+
+    /* Hero */
+
+    .hero {
+        min-height: 600px;
+
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+
+        letter-spacing: 6px;
+    }
+
+    .hero p {
+        font-size: 14px;
+
+        letter-spacing: 1.5px;
+
+        max-width: 320px;
+    }
+
+    .hero button {
+        padding: 13px 30px;
+
+        font-size: 11px;
+    }
+
+    /* Products */
+
+    #products {
+        padding: 65px 20px;
+    }
+
+    #products h2,
+    #about h2,
+    #contact h2 {
+        font-size: 29px;
+
+        letter-spacing: 3px;
+    }
+
+    #products-container {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .product-card img {
+        height: 400px;
+    }
+
+    /* About */
+
+    #about {
+        padding: 70px 25px;
+    }
+
+    #about p {
+        font-size: 14px;
+    }
+
+    /* Contact */
+
+    #contact {
+        padding: 70px 20px;
+    }
+
+    /* Cart */
+
+    #cart-modal {
+        padding: 12px;
+    }
+
+    #cart-modal > div {
+        padding: 22px;
+
+        max-height: 90vh;
+    }
+
+    #cart-modal h2 {
+        font-size: 21px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+
+        letter-spacing: 4px;
+    }
+
+    .hero p {
+        font-size: 12px;
+    }
+
+    .product-card img {
+        height: 340px;
+    }
+}
+```
